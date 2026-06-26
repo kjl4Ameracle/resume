@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitz Jan Lerez | Resume</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    color:white;
+}
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(20px);
+    background:rgba(255,255,255,.05);
+    z-index:999;
+}
+
+nav h2{
+    color:#38bdf8;
+}
+
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+section{
+    min-height:100vh;
+    padding:120px 10%;
+}
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:60px;
+    flex-wrap:wrap;
+}
+
+.hero-text{
+    flex:1;
+}
+
+.hero-text h1{
+    font-size:60px;
+}
+
+.hero-text h2{
+    color:#38bdf8;
+    margin:15px 0;
+}
+
+.hero-text p{
+    color:#cbd5e1;
+    line-height:1.8;
+}
+
+button{
+    margin-top:30px;
+    padding:14px 35px;
+    border:none;
+    border-radius:40px;
+    background:#38bdf8;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 30px rgba(56,189,248,.4);
+}
+
+.card{
+    flex:1;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+
+.card img{
+    width:180px;
+    border-radius:50%;
+    display:block;
+    margin:auto;
+    border:5px solid #38bdf8;
+}
+
+.title{
+    font-size:38px;
+    margin-bottom:40px;
+    color:#38bdf8;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.skill{
+    margin-bottom:20px;
+}
+
+.bar{
+    background:#1e293b;
+    height:10px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:0;
+    background:#38bdf8;
+    transition:2s;
+}
+
+.timeline{
+    border-left:3px solid #38bdf8;
+    padding-left:25px;
+}
+
+.timeline div{
+    margin-bottom:30px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#0f172a;
+    color:#94a3b8;
+}
+
+@media(max-width:900px){
+
+.hero{
+    text-align:center;
+}
+
+.hero-text h1{
+    font-size:42px;
+}
+
+nav ul{
+    display:none;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<nav>
+
+<h2>Resume</h2>
+
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<section class="hero" id="about">
+
+<div class="hero-text">
+
+<h1>Kitz Jan Lerez</h1>
+
+<h2 id="typing"></h2>
+
+<p>
+Microsoft Certified Dynamics 365 Finance & Operations Developer specializing
+in ERP development, customizations, integrations, reporting, and enterprise
+solutions. Passionate about building scalable business applications and
+continuously learning new technologies.
+</p>
+
+<button onclick="downloadResume()">Download Resume</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://i.pravatar.cc/300" alt="Profile">
+
+<h2 style="text-align:center;margin-top:20px;">Professional Summary</h2>
+
+<p style="text-align:center;color:#cbd5e1;margin-top:15px;">
+Computer Science graduate with experience in Microsoft Dynamics 365 Finance &
+Operations, JavaScript, C#, SQL, Azure, and enterprise application development.
+</p>
+
+</div>
+
+</section>
+
+<section id="skills">
+
+<h2 class="title">Skills</h2>
+
+<div class="grid">
+
+<div>
+
+<div class="skill">
+HTML/CSS
+<div class="bar"><div class="progress" data-width="95%"></div></div>
+</div>
+
+<div class="skill">
+JavaScript
+<div class="bar"><div class="progress" data-width="90%"></div></div>
+</div>
+
+<div class="skill">
+C#
+<div class="bar"><div class="progress" data-width="92%"></div></div>
+</div>
+
+<div class="skill">
+Dynamics 365 F&O
+<div class="bar"><div class="progress" data-width="95%"></div></div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Technical Stack</h2>
+
+<p style="margin-top:20px;line-height:2">
+
+✔ JavaScript<br>
+✔ TypeScript<br>
+✔ X++<br>
+✔ SQL Server<br>
+✔ Azure DevOps<br>
+✔ Git<br>
+✔ Power Platform<br>
+✔ REST APIs
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="experience">
+
+<h2 class="title">Experience</h2>
+
+<div class="timeline">
+
+<div>
+<h3>Dynamics 365 F&O Developer</h3>
+<p>2026 - Present</p>
+<p>Develop enterprise ERP solutions, reports, integrations and system enhancements.</p>
+</div>
+
+<div>
+<h3>Computer Science Graduate</h3>
+<p>Central Philippine University</p>
+<p>Specialized in Advanced Software Development.</p>
+</div>
+
+<div>
+<h3>Microsoft Certified</h3>
+<p>Dynamics 365 Finance & Operations Apps Developer Associate</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2 class="title">Contact</h2>
+
+<div class="card">
+
+<h2>Email</h2>
+<p>kitz@example.com</p>
+
+<br>
+
+<h2>LinkedIn</h2>
+<p>linkedin.com/in/kitz</p>
+
+<br>
+
+<h2>Location</h2>
+<p>Quezon City, Philippines</p>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Kitz Jan Lerez • Built with HTML, CSS & JavaScript
+
+</footer>
+
+<script>
+
+const text="Microsoft Dynamics 365 F&O Developer";
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,60);
+
+}
+
+}
+
+type();
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.width=entry.target.dataset.width;
+
+}
+
+})
+
+});
+
+document.querySelectorAll(".progress").forEach(bar=>observer.observe(bar));
+
+function downloadResume(){
+
+alert("Resume download feature can be connected to a PDF.");
+
+}
+
+</script>
+
+</body>
+</html>
