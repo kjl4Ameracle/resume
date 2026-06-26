@@ -1,395 +1,1008 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kitz Jan Lerez | Resume</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitz Jan C. Lerez — D365 F&O Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        :root {
+            --bg: #0a0d13;
+            --surface: #111520;
+            --surface2: #161b27;
+            --border: #1e2535;
+            --accent: #4f8ef7;
+            --accent2: #7c6af7;
+            --accent-glow: rgba(79,142,247,0.15);
+            --text: #e8eaf0;
+            --muted: #7a8099;
+            --dim: #3a4060;
+            --green: #3ecf8e;
+            --orange: #f7a94f;
+        }
 
-<style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-html{
-    scroll-behavior:smooth;
-}
+            /* ─── NOISE OVERLAY ─── */
+            body::before {
+                content: '';
+                position: fixed;
+                inset: 0;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+                pointer-events: none;
+                z-index: 0;
+            }
 
-body{
-    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
-    color:white;
-}
+        /* ─── LAYOUT ─── */
+        .shell {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
 
-nav{
-    position:fixed;
-    width:100%;
-    top:0;
-    padding:20px 10%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    backdrop-filter:blur(20px);
-    background:rgba(255,255,255,.05);
-    z-index:999;
-}
+        /* ─── SIDEBAR ─── */
+        .sidebar {
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 44px 28px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
 
-nav h2{
-    color:#38bdf8;
-}
+        .avatar-ring {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22px;
+            font-weight: 500;
+            color: #fff;
+            position: relative;
+            box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--border);
+        }
 
-nav ul{
-    display:flex;
-    gap:30px;
-    list-style:none;
-}
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            border: 2px solid var(--surface);
+            box-shadow: 0 0 6px var(--green);
+        }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    transition:.3s;
-}
+        .name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--text);
+            line-height: 1.2;
+        }
 
-nav a:hover{
-    color:#38bdf8;
-}
+        .title-badge {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 3px 10px;
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+        }
 
-section{
-    min-height:100vh;
-    padding:120px 10%;
-}
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:60px;
-    flex-wrap:wrap;
-}
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
 
-.hero-text{
-    flex:1;
-}
+            .contact-item:hover {
+                color: var(--accent);
+            }
 
-.hero-text h1{
-    font-size:60px;
-}
+            .contact-item svg {
+                flex-shrink: 0;
+            }
 
-.hero-text h2{
-    color:#38bdf8;
-    margin:15px 0;
-}
+        .sidebar-section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--dim);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
 
-.hero-text p{
-    color:#cbd5e1;
-    line-height:1.8;
-}
+        /* ─── SKILL BARS ─── */
+        .skill-item {
+            margin-bottom: 10px;
+        }
 
-button{
-    margin-top:30px;
-    padding:14px 35px;
-    border:none;
-    border-radius:40px;
-    background:#38bdf8;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-    transition:.3s;
-}
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
 
-button:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 30px rgba(56,189,248,.4);
-}
+            .skill-header span:last-child {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 10px;
+                color: var(--accent);
+            }
 
-.card{
-    flex:1;
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    border-radius:25px;
-    padding:35px;
-    box-shadow:0 20px 40px rgba(0,0,0,.3);
-}
+        .skill-track {
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
 
-.card img{
-    width:180px;
-    border-radius:50%;
-    display:block;
-    margin:auto;
-    border:5px solid #38bdf8;
-}
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(.4,0,.2,1);
+        }
 
-.title{
-    font-size:38px;
-    margin-bottom:40px;
-    color:#38bdf8;
-}
+            .skill-fill.animated {
+                transform: scaleX(1);
+            }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
-}
+        /* ─── CERT BADGES ─── */
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
 
-.skill{
-    margin-bottom:20px;
-}
+        .cert-item {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 11px;
+            font-size: 11px;
+            color: var(--muted);
+            transition: border-color 0.2s, color 0.2s;
+            cursor: default;
+        }
 
-.bar{
-    background:#1e293b;
-    height:10px;
-    border-radius:20px;
-    overflow:hidden;
-}
+            .cert-item:hover {
+                border-color: var(--accent);
+                color: var(--text);
+            }
 
-.progress{
-    height:100%;
-    width:0;
-    background:#38bdf8;
-    transition:2s;
-}
+            .cert-item strong {
+                display: block;
+                font-size: 10px;
+                color: var(--accent);
+                font-family: 'JetBrains Mono', monospace;
+                margin-bottom: 1px;
+            }
 
-.timeline{
-    border-left:3px solid #38bdf8;
-    padding-left:25px;
-}
+        /* ─── MAIN CONTENT ─── */
+        .main {
+            padding: 44px 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
 
-.timeline div{
-    margin-bottom:30px;
-}
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+        }
 
-footer{
-    text-align:center;
-    padding:30px;
-    background:#0f172a;
-    color:#94a3b8;
-}
+        .hero-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
 
-@media(max-width:900px){
+        .hero-headline {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.05;
+            color: var(--text);
+        }
 
-.hero{
-    text-align:center;
-}
+            .hero-headline span {
+                background: linear-gradient(90deg, var(--accent), var(--accent2));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
 
-.hero-text h1{
-    font-size:42px;
-}
+        .hero-sub {
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--muted);
+            max-width: 540px;
+            line-height: 1.7;
+        }
 
-nav ul{
-    display:none;
-}
+        .metrics-row {
+            display: flex;
+            gap: 28px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
 
-}
+        .metric {
+            display: flex;
+            flex-direction: column;
+        }
 
-</style>
+        .metric-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1;
+        }
 
+            .metric-val span {
+                color: var(--accent);
+            }
+
+        .metric-label {
+            font-size: 11px;
+            color: var(--dim);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-sep {
+            width: 1px;
+            background: var(--border);
+            align-self: stretch;
+        }
+
+        /* ─── SECTION ─── */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-label-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--dim);
+            text-transform: uppercase;
+        }
+
+        .section-label-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ─── TIMELINE ─── */
+        .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 7px;
+                top: 8px;
+                bottom: 8px;
+                width: 1px;
+                background: var(--border);
+            }
+
+        .tl-item {
+            padding-left: 32px;
+            padding-bottom: 28px;
+            position: relative;
+            cursor: pointer;
+        }
+
+            .tl-item:last-child {
+                padding-bottom: 0;
+            }
+
+        .tl-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--dim);
+            position: absolute;
+            left: 0;
+            top: 4px;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+
+        .tl-item.active .tl-dot,
+        .tl-item:hover .tl-dot {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .tl-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tl-role {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .tl-company {
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        .tl-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--dim);
+            white-space: nowrap;
+        }
+
+        .tl-bullets {
+            margin-top: 8px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+            opacity: 0;
+        }
+
+        .tl-item.active .tl-bullets {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        .tl-bullet {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 5px;
+            font-size: 12.5px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+            .tl-bullet::before {
+                content: '›';
+                color: var(--accent);
+                flex-shrink: 0;
+                margin-top: 1px;
+            }
+
+        .expand-hint {
+            font-size: 11px;
+            color: var(--dim);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 5px;
+            transition: opacity 0.2s;
+        }
+
+        .tl-item.active .expand-hint {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* ─── PROJECTS ─── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .project-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: linear-gradient(90deg, var(--accent), var(--accent2));
+                opacity: 0;
+                transition: opacity 0.2s;
+            }
+
+            .project-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            }
+
+                .project-card:hover::before {
+                    opacity: 1;
+                }
+
+        .project-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .project-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .project-desc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .p-stat {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--green);
+        }
+
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 12px;
+        }
+
+        .stack-chip {
+            padding: 2px 7px;
+            background: var(--surface2);
+            border-radius: 4px;
+            font-size: 10px;
+            color: var(--dim);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ─── EDUCATION ─── */
+        .edu-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .edu-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .edu-school {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .edu-degree {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .edu-honors {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            padding: 4px 12px;
+            background: rgba(246,173,85,0.1);
+            border: 1px solid var(--orange);
+            border-radius: 20px;
+            font-size: 11px;
+            color: var(--orange);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ─── TECH TAGS ─── */
+        .tech-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            padding: 5px 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            cursor: default;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+
+            .tech-tag:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+                background: var(--accent-glow);
+            }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 2px;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 780px) {
+            .shell {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+            }
+
+            .main {
+                padding: 32px 24px;
+            }
+
+            .hero-headline {
+                font-size: 28px;
+            }
+
+            .metrics-row {
+                gap: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-
-<h2>Resume</h2>
-
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#experience">Experience</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-
-</nav>
-
-<section class="hero" id="about">
-
-<div class="hero-text">
-
-<h1>Kitz Jan Lerez</h1>
-
-<h2 id="typing"></h2>
-
-<p>
-Microsoft Certified Dynamics 365 Finance & Operations Developer specializing
-in ERP development, customizations, integrations, reporting, and enterprise
-solutions. Passionate about building scalable business applications and
-continuously learning new technologies.
-</p>
-
-<button onclick="downloadResume()">Download Resume</button>
-
-</div>
-
-<div class="card">
-
-<img src="https://i.pravatar.cc/300" alt="Profile">
-
-<h2 style="text-align:center;margin-top:20px;">Professional Summary</h2>
-
-<p style="text-align:center;color:#cbd5e1;margin-top:15px;">
-Computer Science graduate with experience in Microsoft Dynamics 365 Finance &
-Operations, JavaScript, C#, SQL, Azure, and enterprise application development.
-</p>
-
-</div>
-
-</section>
-
-<section id="skills">
-
-<h2 class="title">Skills</h2>
-
-<div class="grid">
-
-<div>
-
-<div class="skill">
-HTML/CSS
-<div class="bar"><div class="progress" data-width="95%"></div></div>
-</div>
-
-<div class="skill">
-JavaScript
-<div class="bar"><div class="progress" data-width="90%"></div></div>
-</div>
-
-<div class="skill">
-C#
-<div class="bar"><div class="progress" data-width="92%"></div></div>
-</div>
-
-<div class="skill">
-Dynamics 365 F&O
-<div class="bar"><div class="progress" data-width="95%"></div></div>
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>Technical Stack</h2>
-
-<p style="margin-top:20px;line-height:2">
-
-✔ JavaScript<br>
-✔ TypeScript<br>
-✔ X++<br>
-✔ SQL Server<br>
-✔ Azure DevOps<br>
-✔ Git<br>
-✔ Power Platform<br>
-✔ REST APIs
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="experience">
-
-<h2 class="title">Experience</h2>
-
-<div class="timeline">
-
-<div>
-<h3>Dynamics 365 F&O Developer</h3>
-<p>2026 - Present</p>
-<p>Develop enterprise ERP solutions, reports, integrations and system enhancements.</p>
-</div>
-
-<div>
-<h3>Computer Science Graduate</h3>
-<p>Central Philippine University</p>
-<p>Specialized in Advanced Software Development.</p>
-</div>
-
-<div>
-<h3>Microsoft Certified</h3>
-<p>Dynamics 365 Finance & Operations Apps Developer Associate</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<h2 class="title">Contact</h2>
-
-<div class="card">
-
-<h2>Email</h2>
-<p>kitz@example.com</p>
-
-<br>
-
-<h2>LinkedIn</h2>
-<p>linkedin.com/in/kitz</p>
-
-<br>
-
-<h2>Location</h2>
-<p>Quezon City, Philippines</p>
-
-</div>
-
-</section>
-
-<footer>
-
-© 2026 Kitz Jan Lerez • Built with HTML, CSS & JavaScript
-
-</footer>
-
-<script>
-
-const text="Microsoft Dynamics 365 F&O Developer";
-let i=0;
-
-function type(){
-
-if(i<text.length){
-
-document.getElementById("typing").innerHTML+=text.charAt(i);
-
-i++;
-
-setTimeout(type,60);
-
-}
-
-}
-
-type();
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.style.width=entry.target.dataset.width;
-
-}
-
-})
-
-});
-
-document.querySelectorAll(".progress").forEach(bar=>observer.observe(bar));
-
-function downloadResume(){
-
-alert("Resume download feature can be connected to a PDF.");
-
-}
-
-</script>
-
+    <div class="shell">
+
+        <!-- ════ SIDEBAR ════ -->
+        <aside class="sidebar">
+            <div>
+                <div class="avatar-ring">KJ<div class="status-dot" title="Open to opportunities"></div></div>
+                <div style="margin-top:14px">
+                    <div class="name">Kitz Jan C. Lerez</div>
+                    <div class="title-badge">D365 F&O Developer</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="sidebar-section-label">Contact</div>
+                <div class="contact-list">
+                    <a href="mailto:kitzjanl@gmail.com" class="contact-item">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="2,4 12,13 22,4" /></svg>
+                        kitzjanl@gmail.com
+                    </a>
+                    <a href="https://linkedin.com" class="contact-item" target="_blank">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" /></svg>
+                        LinkedIn Profile
+                    </a>
+                    <div class="contact-item">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="11" r="3" /><path d="M17.6 16.5C19.1 15.1 20 13.1 20 11c0-4.4-3.6-8-8-8s-8 3.6-8 8c0 2.1.9 4.1 2.4 5.5L12 22l5.6-5.5z" /></svg>
+                        Iloilo, Philippines
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="sidebar-section-label">Core Systems</div>
+                <div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>D365 F&O</span><span>8.5/10</span></div>
+                        <div class="skill-track"><div class="skill-fill" data-width="0.85"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>SSRS Reporting</span><span>10/10</span></div>
+                        <div class="skill-track"><div class="skill-fill" data-width="1.0"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>X++ / C#</span><span>8/10</span></div>
+                        <div class="skill-track"><div class="skill-fill" data-width="0.8"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Azure DevOps</span><span>6/10</span></div>
+                        <div class="skill-track"><div class="skill-fill" data-width="0.6"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>ASP.NET Core</span><span>8/10</span></div>
+                        <div class="skill-track"><div class="skill-fill" data-width="0.8"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Power Apps</span><span>7/10</span></div>
+                        <div class="skill-track"><div class="skill-fill" data-width="0.7"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="sidebar-section-label">Certifications</div>
+                <div class="cert-list">
+                    <div class="cert-item">
+                        <strong>Microsoft</strong>
+                        MB-500 · MB-920 · AB-100
+                    </div>
+                    <div class="cert-item">
+                        <strong>CISCO</strong>
+                        Cybersecurity · Network Engineering
+                    </div>
+                    <div class="cert-item">
+                        <strong>PEII</strong>
+                        Programming · Microsoft Office
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ════ MAIN ════ -->
+        <main class="main">
+
+            <!-- HERO -->
+            <section class="hero">
+                <div class="hero-eyebrow">// Microsoft Certified Developer</div>
+                <h1 class="hero-headline">Building <span>enterprise-grade</span><br>systems that scale.</h1>
+                <p class="hero-sub">D365 Finance & Operations Developer specializing in ERP customization, SSRS reporting, and CI/CD automation. Cum Laude graduate with a track record of shipping production systems — from AI-powered help desks to computer-vision parking platforms.</p>
+                <div class="metrics-row">
+                    <div class="metric">
+                        <div class="metric-val">40<span>%</span></div>
+                        <div class="metric-label">Inventory time cut</div>
+                    </div>
+                    <div class="metric-sep"></div>
+                    <div class="metric">
+                        <div class="metric-val">85<span>%</span></div>
+                        <div class="metric-label">Scheduling gain (RL)</div>
+                    </div>
+                    <div class="metric-sep"></div>
+                    <div class="metric">
+                        <div class="metric-val">80<span>%</span></div>
+                        <div class="metric-label">Manual verify reduction</div>
+                    </div>
+                    <div class="metric-sep"></div>
+                    <div class="metric">
+                        <div class="metric-val">#2<span>/79</span></div>
+                        <div class="metric-label">Class rank</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section>
+                <div class="section-label">
+                    <span class="section-label-text">Experience</span>
+                    <div class="section-label-line"></div>
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim)">click to expand</span>
+                </div>
+                <div class="timeline">
+
+                    <div class="tl-item active" onclick="toggleTl(this)">
+                        <div class="tl-dot"></div>
+                        <div class="tl-header">
+                            <div>
+                                <div class="tl-role">Microsoft D365 F&O Software Developer</div>
+                                <div class="tl-company">Kation Technologies Inc.</div>
+                            </div>
+                            <div class="tl-date">Jul 2025 – Present</div>
+                        </div>
+                        <div class="expand-hint">▸ Click to see details</div>
+                        <div class="tl-bullets">
+                            <div class="tl-bullet">Develop and customize D365 F&O components — data entities, forms, classes, tables, and SSRS / Electronic Reporting solutions.</div>
+                            <div class="tl-bullet">Implement extensions and optimized data operations using computed columns, following upgrade-compatibility best practices.</div>
+                            <div class="tl-bullet">Manage source control, branch development, automated builds, and CI/CD pipelines via Azure DevOps.</div>
+                            <div class="tl-bullet">Support environment deployments through LCS, including database backup, restoration, and release automation.</div>
+                        </div>
+                    </div>
+
+                    <div class="tl-item" onclick="toggleTl(this)">
+                        <div class="tl-dot"></div>
+                        <div class="tl-header">
+                            <div>
+                                <div class="tl-role">Software Engineer Intern</div>
+                                <div class="tl-company">Kation Technologies Inc.</div>
+                            </div>
+                            <div class="tl-date">Feb – Apr 2025</div>
+                        </div>
+                        <div class="expand-hint">▸ Click to see details</div>
+                        <div class="tl-bullets">
+                            <div class="tl-bullet">Gained hands-on experience with Power Apps, Power Automate, Power BI, Azure, SharePoint, Dataverse, Business Central, and Dynamics 365 F&O.</div>
+                            <div class="tl-bullet">Contributed to architectural discussions with the Senior Software Engineer and CTO, recommending improvements for Azure Functions and D365 F&O systems.</div>
+                        </div>
+                    </div>
+
+                    <div class="tl-item" onclick="toggleTl(this)">
+                        <div class="tl-dot"></div>
+                        <div class="tl-header">
+                            <div>
+                                <div class="tl-role">Freelance Software Engineer</div>
+                                <div class="tl-company">Remote</div>
+                            </div>
+                            <div class="tl-date">Jun 2021 – 2022</div>
+                        </div>
+                        <div class="expand-hint">▸ Click to see details</div>
+                        <div class="tl-bullets">
+                            <div class="tl-bullet">Developed custom web applications across multiple languages and frameworks, achieving 95% client satisfaction.</div>
+                            <div class="tl-bullet">Applied 100% responsive design and modern UI/UX across all projects while managing concurrent delivery timelines.</div>
+                        </div>
+                    </div>
+
+                    <div class="tl-item" onclick="toggleTl(this)">
+                        <div class="tl-dot"></div>
+                        <div class="tl-header">
+                            <div>
+                                <div class="tl-role">Project Billing Officer</div>
+                                <div class="tl-company">BKL Haulers Corporation</div>
+                            </div>
+                            <div class="tl-date">2022 – 2024</div>
+                        </div>
+                        <div class="expand-hint">▸ Click to see details</div>
+                        <div class="tl-bullets">
+                            <div class="tl-bullet">Collected and verified official receipts and expense documents for construction and mining operations.</div>
+                            <div class="tl-bullet">Compiled project expenses into detailed billing reports and prepared client-facing billing statements.</div>
+                            <div class="tl-bullet">Monitored accounts receivable to ensure timely payment from clients.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section>
+                <div class="section-label">
+                    <span class="section-label-text">Projects</span>
+                    <div class="section-label-line"></div>
+                </div>
+                <div class="projects-grid">
+
+                    <div class="project-card">
+                        <div class="project-tag">Lead Dev · 100% Complete</div>
+                        <div class="project-name">Inventory Management System</div>
+                        <div class="project-desc">Windows-based POS handling inventory, sales, and employee management for a real client.</div>
+                        <div class="project-stats">
+                            <span class="p-stat">↓40% mgmt time</span>
+                            <span class="p-stat">99.9% tx accuracy</span>
+                        </div>
+                        <div class="project-stack">
+                            <span class="stack-chip">C#</span><span class="stack-chip">MSSQL</span><span class="stack-chip">Windows</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-tag">Solo Dev · 100% Complete</div>
+                        <div class="project-name">AI Help Desk System</div>
+                        <div class="project-desc">Automated ticket management with contextual bandits for analytics and Deep Q-Networks for task scheduling.</div>
+                        <div class="project-stats">
+                            <span class="p-stat">1K+ req/month</span>
+                            <span class="p-stat">↑85% scheduling</span>
+                        </div>
+                        <div class="project-stack">
+                            <span class="stack-chip">Python</span><span class="stack-chip">Azure SQL</span><span class="stack-chip">DQN</span><span class="stack-chip">Bandits</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-tag">Thesis · Team Lead · 100% Complete</div>
+                        <div class="project-name">CarPass & Parking System</div>
+                        <div class="project-desc">Dual web interfaces with real-time CCTV-based Faster R-CNN vehicle detection for automated numberplate recognition.</div>
+                        <div class="project-stats">
+                            <span class="p-stat">500+ vehicles</span>
+                            <span class="p-stat">↓80% manual verify</span>
+                        </div>
+                        <div class="project-stack">
+                            <span class="stack-chip">C#</span><span class="stack-chip">Python</span><span class="stack-chip">TensorFlow</span><span class="stack-chip">OpenCV</span><span class="stack-chip">Blazor</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section>
+                <div class="section-label">
+                    <span class="section-label-text">Education</span>
+                    <div class="section-label-line"></div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-icon">🎓</div>
+                    <div>
+                        <div class="edu-school">Central Philippine University</div>
+                        <div class="edu-degree">B.S. Computer Science — Major in Advanced Software Development</div>
+                        <div class="edu-honors">
+                            <span>⭐</span> Cum Laude · Rank 2 of 79 · University & CHED Full Merit Scholar
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TECH STACK -->
+            <section>
+                <div class="section-label">
+                    <span class="section-label-text">Full Tech Stack</span>
+                    <div class="section-label-line"></div>
+                </div>
+                <div class="tech-cloud">
+                    <span class="tech-tag">X++</span>
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML / CSS</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">ASP.NET 8</span>
+                    <span class="tech-tag">.NET Core</span>
+                    <span class="tech-tag">Blazor</span>
+                    <span class="tech-tag">D365 F&O</span>
+                    <span class="tech-tag">SSRS</span>
+                    <span class="tech-tag">Azure</span>
+                    <span class="tech-tag">Azure DevOps</span>
+                    <span class="tech-tag">LCS</span>
+                    <span class="tech-tag">Power Apps</span>
+                    <span class="tech-tag">Power Automate</span>
+                    <span class="tech-tag">Power BI</span>
+                    <span class="tech-tag">SharePoint</span>
+                    <span class="tech-tag">Dataverse</span>
+                    <span class="tech-tag">MSSQL</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Figma</span>
+                    <span class="tech-tag">Visual Studio</span>
+                    <span class="tech-tag">Android Studio</span>
+                    <span class="tech-tag">PyCharm</span>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // Toggle timeline expansion
+        function toggleTl(el) {
+            const wasActive = el.classList.contains('active');
+            document.querySelectorAll('.tl-item').forEach(i => i.classList.remove('active'));
+            if (!wasActive) el.classList.add('active');
+        }
+
+        // Animate skill bars on load
+        const fills = document.querySelectorAll('.skill-fill');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const el = e.target;
+                    const w = parseFloat(el.dataset.width);
+                    el.style.width = (w * 100) + '%';
+                    el.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        setTimeout(() => {
+            fills.forEach(f => {
+                f.style.width = (parseFloat(f.dataset.width) * 100) + '%';
+                observer.observe(f);
+            });
+        }, 300);
+
+        // Stagger project card entrance
+        const cards = document.querySelectorAll('.project-card');
+        const cardObs = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => {
+                        e.target.style.opacity = '1';
+                        e.target.style.transform = 'translateY(0)';
+                    }, i * 80);
+                    cardObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(c => {
+            c.style.opacity = '0';
+            c.style.transform = 'translateY(12px)';
+            c.style.transition = 'opacity 0.4s ease, transform 0.4s ease, border-color 0.2s, box-shadow 0.2s';
+            cardObs.observe(c);
+        });
+    </script>
 </body>
 </html>
