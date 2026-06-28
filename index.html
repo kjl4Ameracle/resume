@@ -20,7 +20,6 @@
         body {
             background: linear-gradient(135deg,#0f172a,#111827,#1e293b);
             color: white;
-            min-height: 100vh;
         }
 
         nav {
@@ -159,238 +158,296 @@
             .timeline div {
                 margin-bottom: 30px;
             }
-        /* Certifications Section Styling */
+        /* ── Certifications Grid ── */
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+            gap: 28px;
         }
 
         .cert-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
             position: relative;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 20px;
+            padding: 30px 28px 26px;
+            cursor: pointer;
+            transition: all .35s cubic-bezier(.4,0,.2,1);
             overflow: hidden;
         }
 
-            .cert-card::before {
+            .cert-card::after {
                 content: '';
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), transparent);
+                inset: 0;
+                border-radius: inherit;
+                background: linear-gradient(135deg,rgba(56,189,248,.10),transparent 60%);
                 opacity: 0;
-                transition: opacity 0.3s ease;
+                transition: opacity .35s;
+                pointer-events: none;
             }
 
             .cert-card:hover {
-                transform: translateY(-8px);
-                border-color: rgba(56, 189, 248, 0.4);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.1);
+                transform: translateY(-6px);
+                border-color: rgba(56,189,248,.35);
+                box-shadow: 0 18px 40px rgba(0,0,0,.45),0 0 24px rgba(56,189,248,.08);
             }
 
-                .cert-card:hover::before {
-                    opacity: 1;
+                .cert-card:hover::after {
+                    opacity: 1
                 }
 
-        .cert-card-header {
+        .cert-card-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
-        .cert-issuer-logo {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px;
-            border-radius: 10px;
+        .cert-logo-wrap {
+            background: rgba(255,255,255,.06);
+            border-radius: 12px;
+            padding: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .cert-arrow {
-            color: #94a3b8;
+            color: #64748b;
             font-size: 20px;
-            transition: transform 0.3s, color 0.3s;
+            transition: all .3s;
         }
 
         .cert-card:hover .cert-arrow {
             color: #38bdf8;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
 
-        .cert-card-body h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 10px;
-            margin-bottom: 8px;
-            line-height: 1.4;
-            color: white;
-        }
-
-        .cert-card-body .issuer {
-            color: #38bdf8;
-            font-size: 12px;
+        .cert-issuer {
+            font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: .8px;
+            color: #38bdf8;
+            margin-bottom: 6px;
         }
 
-        .cert-card-body .date {
-            color: #94a3b8;
-            font-size: 12px;
+        .cert-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.45;
+            color: #e2e8f0;
         }
-        /* Modal Overlay Styling */
+
+        .cert-date {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #64748b;
+        }
+        /* ── Modal ── */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(8px);
+            inset: 0;
+            background: rgba(2,6,23,.82);
+            backdrop-filter: blur(12px);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 1100;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s ease;
+            transition: opacity .35s ease;
         }
 
-            .modal-overlay.active {
+            .modal-overlay.open {
                 opacity: 1;
                 pointer-events: auto;
             }
 
-        .modal-content {
-            background: rgba(30, 41, 59, 0.95);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+        .modal-box {
+            background: linear-gradient(160deg,rgba(30,41,59,.96),rgba(15,23,42,.98));
+            border: 1px solid rgba(56,189,248,.22);
             border-radius: 24px;
-            padding: 40px;
-            width: 90%;
-            max-width: 550px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(56, 189, 248, 0.15);
+            width: 92%;
+            max-width: 520px;
+            padding: 38px 36px 34px;
             position: relative;
-            transform: scale(0.9);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(28px) scale(.96);
+            transition: transform .4s cubic-bezier(.16,1,.3,1);
+            box-shadow: 0 30px 60px rgba(0,0,0,.55),0 0 50px rgba(56,189,248,.06);
         }
 
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
+        .modal-overlay.open .modal-box {
+            transform: translateY(0) scale(1);
         }
 
-        .modal-close {
+        .modal-x {
             position: absolute;
-            top: 15px;
+            top: 16px;
             right: 20px;
             background: none;
             border: none;
-            color: #94a3b8;
-            font-size: 30px;
+            color: #64748b;
+            font-size: 28px;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: color .2s;
+            padding: 0;
+            margin: 0;
+            line-height: 1;
         }
 
-            .modal-close:hover {
-                color: #38bdf8;
+            .modal-x:hover {
+                color: #38bdf8
             }
 
-        .modal-header {
+        .modal-head {
             display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 26px;
         }
 
-        .modal-logo {
+        .modal-logo-wrap {
+            flex-shrink: 0;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 16px;
+            padding: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .modal-issuer {
-            color: #38bdf8;
-            font-size: 13px;
+        .modal-issuer-label {
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 600;
+            color: #38bdf8;
         }
 
-        .modal-title {
-            font-size: 20px;
+        .modal-cert-title {
+            font-size: 18px;
             font-weight: 700;
-            color: white;
-            margin-top: 5px;
             line-height: 1.4;
+            color: #f1f5f9;
+            margin-top: 4px;
         }
 
-        .modal-details-grid {
+        .modal-divider {
+            height: 1px;
+            background: rgba(255,255,255,.08);
+            margin: 0 0 24px;
+        }
+
+        .modal-info-row {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 25px;
+            margin-bottom: 24px;
         }
 
-        .modal-detail-item h4 {
-            color: #94a3b8;
-            font-size: 11px;
+        .modal-info-item h4 {
+            font-size: 10px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
+            letter-spacing: .6px;
+            color: #64748b;
+            margin-bottom: 4px;
         }
 
-        .modal-detail-item p {
-            color: white;
+        .modal-info-item p {
             font-size: 15px;
             font-weight: 500;
+            color: #e2e8f0;
         }
 
-        .credential-id-container {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 25px;
+        .modal-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+
+            .modal-status.active {
+                background: rgba(16,185,129,.12);
+                color: #34d399;
+            }
+
+            .modal-status.no-expiry {
+                background: rgba(56,189,248,.12);
+                color: #38bdf8;
+            }
+
+            .modal-status .status-dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: currentColor;
+                animation: pulse-dot 2s infinite;
+            }
+
+        @keyframes pulse-dot {
+            0%,100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .4
+            }
+        }
+
+        .cred-box {
+            background: rgba(15,23,42,.6);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 14px;
+            padding: 16px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 14px;
+        }
+
+        .cred-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: #64748b;
+            margin-bottom: 3px;
+        }
+
+        .cred-value {
+            font-family: 'Courier New',monospace;
+            font-size: 14px;
+            color: #38bdf8;
+            font-weight: 600;
+            word-break: break-all;
         }
 
         .copy-btn {
-            background: #38bdf8;
-            border: none;
-            color: white;
+            flex-shrink: 0;
+            background: rgba(56,189,248,.15);
+            border: 1px solid rgba(56,189,248,.25);
+            color: #38bdf8;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 13px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.2s;
-            margin-top: 0;
+            transition: all .25s;
+            margin: 0;
         }
 
             .copy-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+                background: #38bdf8;
+                color: #0f172a;
+                transform: none;
+                box-shadow: 0 4px 16px rgba(56,189,248,.3);
             }
 
         footer {
@@ -413,29 +470,23 @@
                 display: none;
             }
 
-            .modal-content {
-                padding: 30px 20px;
+            .modal-box {
+                padding: 28px 22px 24px;
             }
 
-            .modal-header {
+            .modal-head {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+                gap: 14px;
             }
 
-            .modal-details-grid {
+            .modal-info-row {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 14px;
             }
 
-            .credential-id-container {
+            .cred-box {
                 flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
-            }
-
-            .copy-btn {
-                width: 100%;
+                align-items: stretch;
             }
         }
     </style>
@@ -527,13 +578,18 @@
             </div>
         </div>
     </section>
-    <!-- Certifications Section -->
+    <!-- ─── Certifications ─── -->
     <section id="certifications">
         <h2 class="title">Certifications</h2>
-        <div class="cert-grid">
-            <!-- Populated dynamically via JS -->
-        </div>
+        <div class="cert-grid" id="cert-grid"></div>
     </section>
+    <!-- ─── Modal ─── -->
+    <div class="modal-overlay" id="certModal">
+        <div class="modal-box">
+            <button class="modal-x" id="modalClose">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
     <section id="contact">
         <h2 class="title">Contact</h2>
         <div class="card">
@@ -547,44 +603,56 @@
             <p>Quezon City, Philippines</p>
         </div>
     </section>
-    <!-- Dynamic Detail Modal -->
-    <div id="cert-modal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="toggleModal(false)">&times;</button>
-            <div class="modal-body">
-                <!-- Populated dynamically via JS -->
-            </div>
-        </div>
-    </div>
     <footer>
         © 2026 Kitz Jan Lerez • Built with HTML, CSS & JavaScript
     </footer>
     <script>
+/* ── Typing animation ── */
 const text="Microsoft Dynamics 365 F&O Developer";
 let i=0;
 function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i);
-i++;
-setTimeout(type,60);
-}
+  if(i<text.length){
+    document.getElementById("typing").innerHTML+=text.charAt(i);
+    i++;
+    setTimeout(type,60);
+  }
 }
 type();
+/* ── Skill bar observer ── */
 const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.style.width=entry.target.dataset.width;
-}
-})
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.width=entry.target.dataset.width;
+    }
+  })
 });
 document.querySelectorAll(".progress").forEach(bar=>observer.observe(bar));
 function downloadResume(){
-alert("Resume download feature can be connected to a PDF.");
+  alert("Resume download feature can be connected to a PDF.");
 }
-// Certifications Data
-const certifications = [
+/* ── SVG Logos ── */
+const LOGO = {
+  microsoft: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" width="30" height="30">
+    <rect x="0" y="0" width="11" height="11" fill="#f25022"/>
+    <rect x="12" y="0" width="11" height="11" fill="#7fba00"/>
+    <rect x="0" y="12" width="11" height="11" fill="#00a4ef"/>
+    <rect x="12" y="12" width="11" height="11" fill="#ffb900"/>
+  </svg>`,
+  cisco: `<svg viewBox="0 0 120 50" width="50" height="21" xmlns="http://www.w3.org/2000/svg">
+    <line x1="10" y1="24" x2="10" y2="32" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+    <line x1="24" y1="18" x2="24" y2="32" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+    <line x1="38" y1="10" x2="38" y2="32" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+    <line x1="52" y1="4"  x2="52" y2="32" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+    <line x1="66" y1="4"  x2="66" y2="32" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+    <line x1="80" y1="10" x2="80" y2="32" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+    <line x1="94" y1="18" x2="94" y2="32" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+    <line x1="108" y1="24" x2="108" y2="32" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+    <text x="59" y="46" font-family="Poppins,sans-serif" font-size="12" fill="#e2e8f0" text-anchor="middle" font-weight="700" letter-spacing="2">CISCO</text>
+  </svg>`
+};
+/* ── Certification Data ── */
+const CERTS = [
   {
-    id: 1,
     title: "Microsoft Certified: Agentic AI Business Solutions Architect | AB-100",
     issuer: "Microsoft",
     logo: "microsoft",
@@ -593,7 +661,6 @@ const certifications = [
     credentialId: "81B23651AF24D30E"
   },
   {
-    id: 2,
     title: "Microsoft Certified: Dynamics 365 Finance and Operations Apps Developer Associate | MB-500",
     issuer: "Microsoft",
     logo: "microsoft",
@@ -602,150 +669,108 @@ const certifications = [
     credentialId: "97EBAC20234AE47A"
   },
   {
-    id: 3,
     title: "Microsoft Certified: Dynamics 365 Finance and Operations (ERP) | MB-920",
     issuer: "Microsoft",
     logo: "microsoft",
     issued: "Nov 2025",
-    expires: "N/A",
+    expires: null,
     credentialId: "AFC126D9D2F5A3F0"
   },
   {
-    id: 4,
     title: "Introduction to Cybersecurity",
     issuer: "Cisco Networking Academy",
     logo: "cisco",
     issued: "Jul 2024",
-    expires: "N/A",
-    credentialId: "N/A"
+    expires: null,
+    credentialId: null
   }
 ];
-// SVGs for Logos
-const logos = {
-  microsoft: `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" width="28" height="28">
-      <path fill="#f35022" d="M0 0h11v11H0z"/>
-      <path fill="#80bb0a" d="M12 0h11v11H12z"/>
-      <path fill="#00a1f1" d="M0 12h11v11H0z"/>
-      <path fill="#ffb900" d="M12 12h11v11H12z"/>
-    </svg>
-  `,
-  cisco: `
-    <svg viewBox="0 0 100 60" width="38" height="23" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15,35 L15,41 M25,27 L25,41 M35,19 L35,41 M45,11 L45,41 M55,11 L55,41 M65,19 L65,41 M75,27 L75,41 M85,35 L85,41" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" fill="none"/>
-      <text x="50%" y="54" font-size="11" font-family="'Poppins', sans-serif" fill="#ffffff" text-anchor="middle" font-weight="bold" letter-spacing="0.5">CISCO</text>
-    </svg>
-  `
-};
-// Render Certification Cards
-function renderCertifications() {
-    const grid = document.querySelector('.cert-grid');
-    grid.innerHTML = certifications.map(cert => {
-        return `
-            <div class="cert-card" onclick="openCertModal(${cert.id})">
-                <div class="cert-card-header">
-                    <div class="cert-issuer-logo">${logos[cert.logo]}</div>
-                    <span class="cert-arrow">→</span>
-                </div>
-                <div class="cert-card-body">
-                    <div class="issuer">${cert.issuer}</div>
-                    <h3>${cert.title}</h3>
-                    <div class="date">Issued ${cert.issued}</div>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-// Open Details Modal
-function openCertModal(certId) {
-    const cert = certifications.find(c => c.id === certId);
-    if (!cert) return;
-    const modalBody = document.querySelector('.modal-body');
-    let expiryHtml = '';
-    if (cert.expires && cert.expires !== 'N/A') {
-        expiryHtml = `
-            <div class="modal-detail-item">
-                <h4>Expires</h4>
-                <p>${cert.expires}</p>
-            </div>
-        `;
-    } else {
-        expiryHtml = `
-            <div class="modal-detail-item">
-                <h4>Expires</h4>
-                <p>Does not expire</p>
-            </div>
-        `;
-    }
-    let credIdHtml = '';
-    if (cert.credentialId && cert.credentialId !== 'N/A') {
-        credIdHtml = `
-            <div class="credential-id-container">
-                <div style="text-align: left;">
-                    <span style="color:#94a3b8; font-size: 11px; text-transform: uppercase; display: block; letter-spacing: 0.5px; margin-bottom: 2px;">Credential ID</span>
-                    <span id="cred-id-val" style="font-family: monospace; font-size: 15px; color: #38bdf8; font-weight: 600; word-break: break-all;">${cert.credentialId}</span>
-                </div>
-                <button class="copy-btn" onclick="copyCredentialId('${cert.credentialId}', this)">Copy ID</button>
-            </div>
-        `;
-    }
-    modalBody.innerHTML = `
-        <div class="modal-header">
-            <div class="modal-logo">${logos[cert.logo]}</div>
-            <div style="text-align: left;">
-                <div class="modal-issuer">${cert.issuer}</div>
-                <h3 class="modal-title">${cert.title}</h3>
-            </div>
+/* ── Render Cards ── */
+(function renderCards(){
+  const grid = document.getElementById('cert-grid');
+  grid.innerHTML = CERTS.map((c, idx) => `
+    <div class="cert-card" onclick="openModal(${idx})" tabindex="0" role="button"
+         onkeydown="if(event.key==='Enter')openModal(${idx})">
+      <div class="cert-card-top">
+        <div class="cert-logo-wrap">${LOGO[c.logo]}</div>
+        <span class="cert-arrow">→</span>
+      </div>
+      <div class="cert-issuer">${c.issuer}</div>
+      <h3>${c.title}</h3>
+      <p class="cert-date">Issued ${c.issued}${c.expires ? ' · Expires ' + c.expires : ''}</p>
+    </div>
+  `).join('');
+})();
+/* ── Modal Logic ── */
+const overlay  = document.getElementById('certModal');
+const modalContent = document.getElementById('modalContent');
+const modalClose   = document.getElementById('modalClose');
+function openModal(idx){
+  const c = CERTS[idx];
+  const hasExpiry = !!c.expires;
+  const statusClass = hasExpiry ? 'active' : 'no-expiry';
+  const statusLabel = hasExpiry ? 'Active' : 'No Expiration';
+  let credHtml = '';
+  if(c.credentialId){
+    credHtml = `
+      <div class="cred-box">
+        <div>
+          <div class="cred-label">Credential ID</div>
+          <div class="cred-value">${c.credentialId}</div>
         </div>
-        <div class="modal-details-grid">
-            <div class="modal-detail-item" style="text-align: left;">
-                <h4>Issued</h4>
-                <p>${cert.issued}</p>
-            </div>
-            <div style="text-align: left;">
-                ${expiryHtml}
-            </div>
-        </div>
-        ${credIdHtml}
-    `;
-    toggleModal(true);
+        <button class="copy-btn" onclick="copyId('${c.credentialId}', this)">Copy</button>
+      </div>`;
+  }
+  modalContent.innerHTML = `
+    <div class="modal-head">
+      <div class="modal-logo-wrap">${LOGO[c.logo]}</div>
+      <div>
+        <div class="modal-issuer-label">${c.issuer}</div>
+        <h3 class="modal-cert-title">${c.title}</h3>
+      </div>
+    </div>
+    <div class="modal-status ${statusClass}">
+      <span class="status-dot"></span>
+      ${statusLabel}
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-info-row">
+      <div class="modal-info-item">
+        <h4>Issued</h4>
+        <p>${c.issued}</p>
+      </div>
+      <div class="modal-info-item">
+        <h4>Expires</h4>
+        <p>${c.expires || 'Does not expire'}</p>
+      </div>
+    </div>
+    ${credHtml}
+  `;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
-function toggleModal(show) {
-    const modal = document.getElementById('cert-modal');
-    if (show) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    } else {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+function closeModalFn(){
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
 }
-function closeModal(event) {
-    if (event.target.id === 'cert-modal') {
-        toggleModal(false);
-    }
+modalClose.addEventListener('click', closeModalFn);
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModalFn(); });
+window.addEventListener('keydown', e => { if(e.key === 'Escape') closeModalFn(); });
+/* ── Copy credential ID ── */
+function copyId(txt, btn){
+  navigator.clipboard.writeText(txt).then(() => {
+    btn.textContent = 'Copied ✓';
+    btn.style.background = '#10b981';
+    btn.style.borderColor = '#10b981';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }, 2000);
+  });
 }
-// Close modal on Escape key press
-window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        toggleModal(false);
-    }
-});
-function copyCredentialId(text, btn) {
-    navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.innerText;
-        btn.innerText = 'Copied!';
-        btn.style.background = '#10b981';
-        btn.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.3)';
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.background = '#38bdf8';
-            btn.style.boxShadow = '';
-        }, 2000);
-    });
-}
-// Initialize certifications rendering
-renderCertifications();
     </script>
 </body>
 </html>
